@@ -1,12 +1,22 @@
 from memory_profiler import profile
+from pympler import asizeof
+import sys
+
+n = 1000000
 
 @profile
 def set_vs_frozenset():
-    s = {1, 2, 3, 4, 5}  # set
-    fs = frozenset({1, 2, 3, 4, 5})  # frozenset
+    s = set([ i for i in range(n)])  # set
+    fs = frozenset([ i for i in range(n)])  # frozenset
 
     set_size = s.__sizeof__()
     frozenset_size = fs.__sizeof__()
+    
+    print("asizeof : Set : ", asizeof.asizeof(s))
+    print("asizeof : FrozenSet : ", asizeof.asizeof(fs))
+    
+    print("normal : Set : ", sys.getsizeof(s))
+    print("normal : FrozenSet : ", sys.getsizeof(fs))
 
     size_diff = frozenset_size - set_size
     percent_diff = (size_diff / set_size) * 100
