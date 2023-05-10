@@ -1,0 +1,4 @@
+How django settings file loaded to LazySettings Object ?
+    settings.py -> imports local_settings.py
+                -> imports another_settings.py
+                
