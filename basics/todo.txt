@@ -1,4 +1,13 @@
-How django settings file loaded to LazySettings Object ?
+1) How django settings file loaded to LazySettings Object ?
     settings.py -> imports local_settings.py
                 -> imports another_settings.py
-                
+    what does this design patterns called ?
+
+2) what happens when we import one file from another in python ? it will execute the file being imported first ?
+ what of the same file will be imported again somewhere else in some other file ? will it imported again ?
+
+3) Can there be module imported halfway, what is "_call_with_frames_removed" of importlib module in python ?
+
+4) How can I remove the frames from stack at runtime in python ? how python will then continue execcution ? how intstruction pointer will gets managed ?
+
+5) importlib vs normal import
