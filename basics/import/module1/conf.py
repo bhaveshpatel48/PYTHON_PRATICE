@@ -6,7 +6,7 @@ class Settings:
     def __init__(self,module_name) -> None:
         print("Importing module")
         mod = importlib.import_module(module_name)
-        print("dir of mod : ", dir(mod))
+        print("dir of mod : ", dir(mod)," " ,id(mod))
         for setting in dir(mod):
             setattr(self,setting,getattr(mod,setting))
 
