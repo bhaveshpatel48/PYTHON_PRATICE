@@ -1,7 +1,7 @@
 
 import importlib
 
-
+#? Class to store the actual variables, functions and classes from settings file to this class object
 class Settings:
     def __init__(self,module_name) -> None:
         print("Importing module")
@@ -10,6 +10,7 @@ class Settings:
         for setting in dir(mod):
             setattr(self,setting,getattr(mod,setting))
 
+#? Lazy settings class, loads the settings into memory first time anywhere in programme the variable from this object is accessed
 class LazySettings:
     def __init__(self) -> None:
         self._wrapped = None
@@ -29,5 +30,6 @@ class LazySettings:
             return getattr(self._wrapped, __name)
         except Exception as e:
             print(e)
-    
-settings = LazySettings()
+
+#^ Singelton instance of this class    
+settings = LazySettings()   #? Initialized once and used everywhere in the programme
