@@ -11,6 +11,10 @@ def f():
         print(" locals : ",locals())
         infg()
     print(" locals : ",locals())
+    
+    #? The proof that the nested inner function (infg & inhn) is not yet compiled and saved to locals of f
+    print(" locals : ",locals().get('infq').__dict__)
+    
     infq()
 print(" globals : ",globals())      
 f()
