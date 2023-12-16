@@ -17,7 +17,7 @@ class Abstract1(ABC):
     def display(self):
         print("Abstract display method")
 
-class ImplAbstract1():
+class ImplAbstract1(Abstract1):
     
     def display(self):
         print("Override display method")

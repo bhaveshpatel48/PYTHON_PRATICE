@@ -11,3 +11,7 @@
 4) How can I remove the frames from stack at runtime in python ? how python will then continue execcution ? how intstruction pointer will gets managed ?
 
 5) importlib vs normal import
+
+6) Dynamically create the Class and Funtion
+
+7) Metaclass to explore in python
