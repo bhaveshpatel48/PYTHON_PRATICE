@@ -1,5 +1,6 @@
 
 #% Way-1: Using the __new__ method
+#~? Needed to override __new__ in every class that needs to be singleton 
 class SingletonClass(object):
     
     def __new__(cls):
@@ -13,6 +14,7 @@ obj = SingletonClass()
 print(obj.a)
 
 #% Way-2: using decorator
+#~? The decorator can be used on any class that needs to be singleton, DRY code practice
 def singleton(cls):
     
     def get_instance(*args, **kwargs):
@@ -31,21 +33,21 @@ print(obj.updated)
 
 
 #% Way3: using metacclass
-print("\n Meta Classes")
+#~? Most advanced way to create a singleton class instance
+#~? DRY Practice
+#~? Provide metaclass= attribute to every class defination that needs to be singleton
 class SingletonMetaclass(type):
     def __init__(self, *args, **kwargs):
         print("meta class init")
         print("args: ",args)
         print("kwargs: ",kwargs)
         
-    def __call__(cls, *args, **kwargs):
-        print("cls inside __call__ of meta class: ", cls)
-        # if not hasattr(cls, 'instance'):
-        #     cls.instance = cls(*args, **kwargs)
-        # return cls.instance
-        return super().__call__(cls)
+    def __call__(self, *args, **kwargs):
+        print("cls inside __call__ of meta class: ", self)
+        if not hasattr(self, 'instance'):
+            self.instance = super().__call__(self, *args, **kwargs)
+        return self.instance
 
-print("SingletonMetaclass: ", SingletonMetaclass)
 class SingletonWithMetaclass(metaclass=SingletonMetaclass):
     topic = "Singleton object creation in python programming language"
     purpose = "Through out the application, only single instance will exist of this class"
@@ -56,11 +58,14 @@ class SingletonWithMetaclass(metaclass=SingletonMetaclass):
     
     def __init__(self,*args) -> None:
         self.initialized = True
-        print("Init SingletonMetaclass")
-
-print("SingletonWithMetaclass.__dict__: , ", SingletonWithMetaclass.__dict__)    
+        print("Init SingletonMetaclass")    
 
 obj = SingletonWithMetaclass()
 obj.updated = False
-# obj = SingletonWithMetaclass()
+
 print(obj.updated)
+
+obj.name = "john"
+
+obj = SingletonWithMetaclass()
+print(obj.name)
