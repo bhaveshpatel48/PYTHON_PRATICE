@@ -15,3 +15,11 @@
 6) Dynamically create the Class and Funtion
 
 7) Metaclass to explore in python
+
+8) Context Manager in python
+
+9) Multi threading and multiprocessing in python
+
+10) Asyncio
+
+11) SOLID Principles in python

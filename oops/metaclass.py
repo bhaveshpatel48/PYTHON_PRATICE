@@ -61,6 +61,14 @@ class MetaClass(type):      #~* meta classes in python extends/inherit the "type
         #~* 2) self.__init__(self.__new__(self,*args, **kwargs),*args,**kwargs)
         #~# 1 & 2 are equivalent
         
+        print("self.__new__: ", self.__new__)
+        print("self.__init__: ", self.__init__)
+        print("Test.__new__: ", eval('Test').__new__)
+        print("Test.__init__: ", eval('Test').__init__)
+        print("slef.mro(): ", self.mro())   #? Equvivalent to Test.__mro__
+        print("MetaClass.__mro__: ", MetaClass.__mro__)
+        print("self.__dict__: ", self.__dict__)
+        
         obj = self.__new__(self,*args, **kwargs)    #? creates a new memory
         self.__init__(obj,*args,**kwargs)   #? initializes that memory
         return obj
@@ -97,7 +105,20 @@ print("\nMethod in order called while creating the object of Test")
 obj = Test()
 obj.display()
 print("\nTest.__dict__: ", Test.__dict__)
+print("\nMetaClass.__dict__: ", MetaClass.__dict__)
 Test.metaDisplay()
 print(Test.mro())
 Test.version = "3.11"
 print(obj.version)
+
+#? Class calling the method just by passing the argumetn value, which is mapped to self in method signature
+#~% It is not that the methods belongs to the object of the class, it is the methods belongs to the class object (Object of class 'type', Ex: Test) only, the object of calss has the facility to access those methods
+Test.__init__(Test)
+MetaClass.metaDisplay(MetaClass)
+
+#~% If the method or variable is found on the objet itself, it won't serach for the method or variable in object of it's class (Ex: Test)
+def objSpecificMethod():
+    print("objSpecificMethod called")
+
+obj.display = objSpecificMethod
+obj.display()

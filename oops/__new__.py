@@ -62,3 +62,4 @@ e = E()
 print(e)
 
 print("MRO:- ",E.__mro__)
+print(e.__mro__)    #~? __mro__ attribute is only for the object of class "type"
