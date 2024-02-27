@@ -23,3 +23,13 @@
 10) Asyncio
 
 11) SOLID Principles in python
+
+12) How python codes gets executed
+
+13) Frameworks in python: (Starlette, aiohttp)
+
+14) Libraries in python: ( pre-commit, sqlalchemy, msgspecs, setuptools)
+
+15) __slots__ in python
+
+16) .pyi files to explore
